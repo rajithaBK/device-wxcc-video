@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Video Support</string>
+
+    <!-- Hosted "Request Video Support" page (customer/index.html).
+         Served from the same Vercel deployment as the API (same-origin, no CORS). -->
+    <string name="support_page_url">https://your-deployment.example.com/customer/index.html</string>
+</resources>

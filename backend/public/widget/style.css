@@ -1,0 +1,280 @@
+/* Webex-style layout for the WxCC video widget. */
+
+:root {
+  --wx-bg: #0f0f11;
+  --wx-btn: #2b2b30;
+  --wx-btn-hover: #3a3a41;
+  --wx-red: #d1354a;
+  --wx-red-hover: #b32a3c;
+  --wx-text: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--wx-bg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+/* Full-height column: video stage on top, controls float over the bottom. */
+.hero.is-fullheight {
+  min-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--wx-bg);
+}
+
+/* ---- Video stage ---- */
+.video-view {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0 !important;
+  background: #000;
+  overflow: hidden;
+}
+
+#remote-view {
+  position: absolute;
+  inset: 0;
+}
+
+#remote-view-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+#remote-view-stats {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.7rem;
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* ---- Self view (floating, draggable thumbnail) ---- */
+#self {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24%;
+  min-width: 120px;
+  max-width: 220px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+  background: #000;
+  z-index: 6;
+  cursor: grab;
+}
+
+#self:active {
+  cursor: grabbing;
+}
+
+#self-view {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* mirror, like Webex self-view */
+  display: block;
+}
+
+/* ---- Control bar (floating pill, centered at bottom) ---- */
+.buttons-column {
+  margin: 0 !important;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#buttons-container {
+  pointer-events: auto;
+  display: none; /* toggled to flex by app.js once media is ready */
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 20px 0 !important;
+  padding: 10px 14px !important;
+  background: rgba(24, 24, 27, 0.86);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+/* Reset the individual mute/video wrappers so gap spacing is even. */
+#buttons-container .mr-2 {
+  margin: 0 !important;
+  display: flex;
+}
+
+/* Base button look (overrides Bulma). */
+#buttons-container .button {
+  border: none !important;
+  background: var(--wx-btn) !important;
+  color: var(--wx-text) !important;
+  border-radius: 999px !important;
+  height: 44px;
+  padding: 0 16px !important;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s ease, transform 0.05s ease;
+  box-shadow: none !important;
+}
+
+#buttons-container .button:hover {
+  background: var(--wx-btn-hover) !important;
+}
+
+#buttons-container .button:active {
+  transform: scale(0.96);
+}
+
+#buttons-container .button img {
+  width: 18px;
+  height: 18px;
+  margin: 0 !important;
+  vertical-align: middle;
+}
+
+/* Inline SVG icons (screen share) inherit the button's text color. */
+#buttons-container .button svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+/* Live/active toggle (e.g. Stop Share) and soft-disabled (capability off). */
+#buttons-container .button.is-live {
+  background: var(--wx-red) !important;
+}
+#buttons-container .button.is-live:hover {
+  background: var(--wx-red-hover) !important;
+}
+#buttons-container .button[disabled],
+#buttons-container .button.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon-only round buttons (options + hangup). */
+#dropdown-button,
+#hangup {
+  width: 44px;
+  height: 44px;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  justify-content: center;
+}
+
+/* Hangup = red. */
+#hangup {
+  background: var(--wx-red) !important;
+}
+
+#hangup:hover {
+  background: var(--wx-red-hover) !important;
+}
+
+#hangup img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Options dropdown (dark) ---- */
+.dropdown {
+  margin: 0 !important;
+}
+
+#dropdown-menu {
+  min-width: 200px;
+}
+
+#dropdown-menu .dropdown-content {
+  background: #1f1f23;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#dropdown-menu .dropdown-item {
+  color: #fff !important;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+#dropdown-menu .dropdown-item:hover {
+  background: var(--wx-btn-hover);
+}
+
+#dropdown-menu .dropdown-item img {
+  width: 18px;
+  height: 18px;
+}
+
+/* ---- Recording button dot ---- */
+.rec-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d1354a;
+  vertical-align: middle;
+}
+
+/* Pulsing red while recording is live (Stop Recording button). */
+.rec-dot.is-live {
+  animation: rec-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes rec-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ---- Loading / status overlay ---- */
+#loading-container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  background: var(--wx-bg);
+  z-index: 20;
+}

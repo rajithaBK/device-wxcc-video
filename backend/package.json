@@ -1,0 +1,10 @@
+{
+  "name": "wxcc-video-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Serverless backend for WxCC video-in-queue: creates a meeting, routes a workItem task, and dials a RoomOS device through Cloud xAPI.",
+  "engines": {
+    "node": ">=18"
+  }
+}

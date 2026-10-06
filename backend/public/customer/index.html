@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Support</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="welcome-view" class="card" aria-labelledby="welcome-title">
+        <h1 id="welcome-title">Connect with a support specialist</h1>
+        <p class="description">
+          Start a secure video session on this device. A specialist will be
+          routed to you automatically.
+        </p>
+        <button id="get-started" class="primary-button" type="button">
+          Get Started
+        </button>
+      </section>
+
+      <dialog id="customer-dialog" aria-labelledby="form-title">
+        <form id="customer-form">
+          <button
+            id="close-dialog"
+            class="close-button"
+            type="button"
+            aria-label="Close"
+          >
+            ×
+          </button>
+          <p class="eyebrow">Before we connect you</p>
+          <h2 id="form-title">Tell us about yourself</h2>
+
+          <label for="customer-name">Name</label>
+          <input
+            id="customer-name"
+            name="customerName"
+            type="text"
+            maxlength="128"
+            autocomplete="name"
+            required
+          />
+
+          <label for="birth-year">Year of birth</label>
+          <input
+            id="birth-year"
+            name="birthYear"
+            type="number"
+            inputmode="numeric"
+            autocomplete="bday-year"
+            required
+          />
+
+          <fieldset id="connect-with" class="choice-group">
+            <legend>Connect with</legend>
+            <label class="choice">
+              <input type="radio" name="connectWith" value="Nurse Practitioner" />
+              <span>Nurse Practitioner</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="connectWith" value="Insurance Specialist" />
+              <span>Insurance Specialist</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="connectWith" value="Clinical Pharmacist" />
+              <span>Clinical Pharmacist</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="connectWith" value="Social Worker" />
+              <span>Social Worker</span>
+            </label>
+          </fieldset>
+
+          <p id="form-error" class="form-error" role="alert"></p>
+          <button id="connect" class="primary-button" type="submit">
+            Connect me
+          </button>
+        </form>
+      </dialog>
+
+      <section
+        id="status-view"
+        class="card status-card"
+        aria-live="polite"
+        hidden
+      >
+        <div id="status-spinner" class="spinner" aria-hidden="true"></div>
+        <div id="status-success" class="success-icon" aria-hidden="true" hidden>
+          ✓
+        </div>
+        <h1 id="status-title">Connecting you</h1>
+        <p id="status-message" class="description">
+          We’re creating your meeting and finding a specialist.
+        </p>
+        <button id="try-again" class="secondary-button" type="button" hidden>
+          Try again
+        </button>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

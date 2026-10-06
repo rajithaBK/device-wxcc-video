@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Support</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="hero is-fullheight is-bold">
+      <div class="video-view">
+        <div id="self">
+          <video id="self-view" muted autoplay playsinline></video>
+        </div>
+        <div id="remote-view">
+          <audio id="remote-view-audio" autoplay playsinline></audio>
+          <video id="remote-view-video" muted autoplay playsinline></video>
+          <div id="remote-view-stats">
+            <div id="remote-view-stats-resolution"></div>
+          </div>
+        </div>
+      </div>
+      <div class="buttons-column">
+        <div id="buttons-container" class="buttons-container pt-4 pb-4">
+          <div id="video-mute-div" class="mr-2">
+            <button
+              id="video-mute-off"
+              class="button is-rounded is-dark is-small"
+              alt="Mute video"
+              type="button"
+              aria-label="mute video"
+            >
+              <img src="2636bfc8f7cbb7df0fed.svg" class="mr-1" />Stop Video
+            </button>
+            <button
+              id="video-mute-on"
+              class="button is-rounded is-dark is-small"
+              alt="Mute video"
+              type="button"
+              aria-label="mute video"
+              style="display: none"
+            >
+              <img src="8d60f7c397e3c3af53d3.svg" class="mr-1" />Start
+              Video
+            </button>
+          </div>
+
+          <div id="audio-mute-div" class="mr-2">
+            <button
+              id="audio-mute-off"
+              class="button is-rounded is-dark is-small"
+              alt="Mute audio"
+              type="button"
+              aria-label="mute audio"
+            >
+              <img src="a9d899d0482035990ce6.svg" />Mute
+            </button>
+            <button
+              id="audio-mute-on"
+              class="button is-rounded is-dark is-small"
+              alt="Mute audio"
+              type="button"
+              aria-label="mute audio"
+              style="display: none"
+            >
+              <img src="233e1b96bfa3aa57796c.svg" />Unmute
+            </button>
+          </div>
+
+          <div id="record-div" class="mr-2">
+            <button
+              id="record-start"
+              class="button is-rounded is-dark is-small"
+              type="button"
+              aria-label="start recording"
+            >
+              <span class="rec-dot mr-1"></span>Record
+            </button>
+            <button
+              id="record-stop"
+              class="button is-rounded is-dark is-small"
+              type="button"
+              aria-label="stop recording"
+              style="display: none"
+            >
+              <span class="rec-dot is-live mr-1"></span>Stop Recording
+            </button>
+          </div>
+
+          <div class="dropdown is-up mr-2">
+            <div class="dropdown-trigger">
+              <button
+                id="dropdown-button"
+                title="option"
+                type="button"
+                class="button is-rounded is-dark is-small"
+              >
+                <img src="e6a6975552091299168a.svg" />
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <a
+                  id="hide-self-view"
+                  class="dropdown-item"
+                  style="display: flex; align-items: center"
+                >
+                  <img
+                    src="a54b27544ca88868234a.svg"
+                    style="vertical-align: middle; margin-right: 0.5rem"
+                  />Hide self view
+                </a>
+                <a
+                  id="show-self-view"
+                  class="dropdown-item"
+                  style="display: none; align-items: center"
+                >
+                  <img
+                    src="d1d75938e3c7dfc87179.svg"
+                    style="vertical-align: middle; margin-right: 0.5rem"
+                  />Show self view
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div id="cancel">
+            <button
+              id="hangup"
+              title="hangup"
+              type="button"
+              class="button is-rounded is-small"
+            >
+              <img src="06aed77ed2c830f938e2.svg" />
+            </button>
+          </div>
+        </div>
+      </div>
+      <div id="loading-container">
+        <span>Loading...</span>
+      </div>
+    </section>
+
+    <!-- JavaScript file -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.8/axios.min.js"
+      integrity="sha512-v8+bPcpk4Sj7CKB11+gK/FnsbgQ15jTwZamnBf/xDmiQDcgOIYufBo6Acu1y30vrk8gg5su4x0CG3zfPaq5Fcg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/webex@3.7.0/umd/webex.min.js"
+    ></script>
+    <script type="module" src="app.js?v=7"></script>
+  </body>
+</html>
